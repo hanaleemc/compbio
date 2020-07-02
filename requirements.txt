@@ -4,5 +4,4 @@ flask_session
 flask_cors
 pandas
 biotite
-db-sqlite3
-pytz
+matplotlib
