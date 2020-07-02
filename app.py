@@ -39,36 +39,6 @@ def login():
 
     return render_template('login.html')
 
-@app.route("/signup", methods=["GET", "POST"])
-def signup():
-
-    if request.method == "POST":
-
-        name = request.form["name"]
-        email = request.form["email"]
-        description = request.form["description"]
-        password = request.form["password"]
-        password2 = request.form["password2"]
-
-        if password != password2:
-            flash('The passwords dont match. Please try again.', 'error')
-        else:
-            database = sqlite3.connect('users.db')
-            id = app_functions.random_id(12)
-            bit_id = app_functions.random_id(10)
-            eth_id = app_functions.random_id(10)
-
-            make_query = ''' INSERT INTO USERS \
-            			VALUES ( '{}', '{}', '{}', '{}', '{}', '{}', 0, '{}', 0, 50) ; '''.format(id, name, email, password, description,
-                                                                                    bit_id, eth_id)
-            database.execute(make_query)
-            database.commit()
-            database.close()
-            flash('Your account was successfully created', 'success')
-            return redirect(url_for('login'))
-
-    return render_template('sign_up.html')
-
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
 
