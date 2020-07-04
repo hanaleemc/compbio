@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+   <link rel="stylesheet" href="/static/css/login.css">
+   <link rel="stylesheet" href="/static/css/new_bootstrap.min.css">
+   <link rel="icon" href="/static/images/dna_icon.png">
+   <head>
+      <title>Team CompBio</title>
+   </head>
+   <body>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <a class="navbar-brand" href="#">
+         Team CompBio
+         </a>
+         <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+               <li class="nav-item active">
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/signup">Sign Up</a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+
+      <div class="overlay body-img">
+
+         <div class="form">
+
+            <h2 class="text-copper">Welcome Back</h2>
+            <p id='error_flash'>
+               {% with messages = get_flashed_messages(category_filter=["error"]) %}
+               {% if messages %}
+               {% for message in messages %}
+               {{ message }}
+               {% endfor %}
+               {% endif %}
+               {% endwith %}
+            </p>
+            <p id='success_flash'>
+               {% with messages = get_flashed_messages(category_filter=["success"]) %}
+               {% if messages %}
+               {% for message in messages %}
+               {{ message }}
+               {% endfor %}
+               {% endif %}
+               {% endwith %}
+            </p>
+
+            <form class="white" enctype="multipart/form-data" method="post">
+
+                  <div class="form-group">
+                     <input required name='name' id='name' class="form-control" id="name" placeholder="Enter Name">
+                     <br>
+                     <label for="workflow">Select Workflow</label> <br>
+                     <select required name="workflow" id="workflow" class='input_big'>
+                        <option value="pgt">Phylogenetic and Guide Trees</option>
+                        <option value="codon">Codon Translation</option>
+                        <option value="protein">Protein Prediction</option>
+                        <option value="sequence">Sequence Features</option>
+                        <option value="fmap">Feature Map</option>
+                     </select>
+                  </div>
+                  <button type="submit" name='submit_button' class="btn btn-primary padding-up" value='login'> Submit </button>
+            </form>
+
+         </div>
+      </div>
+
+   </body>
+</html>

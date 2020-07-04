@@ -1,3 +1,24 @@
+.navbar {
+	height: 30px
+}
+
+
+#workflow {
+	text-align: center;
+	width: 100%;
+	height: 30px;
+	border-radius: 5px
+}
+
+#error_flash {
+	color:red
+}
+
+#success_flash {
+	color:green
+}
+
+
 .body-img {
 	padding: 70px;
 	margin: 4px auto;
@@ -15,9 +36,10 @@
 	margin: 5% auto;
 	margin-left: 0%;
 	max-width: 500px;
-	width: 40%;
 	background-color: white;
 	border-radius: 15%;
+	width: 500px;
+	opacity: 0.9
 }
 
 .overlay{

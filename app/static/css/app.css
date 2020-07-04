@@ -2,14 +2,55 @@ table, th, td {
   border-collapse: collapse;
   padding: 5px
 }
+.short_form {
+  text-align: center;
+  margin: 0 auto
+}
+
+#gene {
+  width: 250px;
+  height: 30px;
+  border-radius: 3px;
+  border-width: 1px;
+  border-color: grey
+}
+
+h2 {
+  color: grey
+}
+
+#image {
+  border-radius: 10px;
+  height: 100px;
+  width: 400px;
+  opacity: 1
+}
+
+.white2 {
+  width: 1200px;
+  margin-top: 40px;
+  opacity: 1;
+  margin-left: 100px;
+  text-align: center;
+  margin: 0 auto
+}
+
+.notif-cell {
+  margin: 0 auto ;
+  width: 1000px;
+  margin-top: 40px;
+  margin-left: 600px;
+  text-align:center;
+  margin: 0 auto
+}
 
 .vertical-nav {
   min-width: 17rem;
-  width: 17rem;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
+  width: 15%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;
   position: fixed;
@@ -20,6 +61,11 @@ table, th, td {
   width: calc(100% - 17rem);
   margin-left: 17rem;
   transition: all 0.4s;
+}
+
+#sidebar{
+  text-align: center;
+  margin: 0 auto
 }
 
 /* for toggle behavior */
