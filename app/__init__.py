@@ -62,27 +62,6 @@ def feature_map():
 
     return render_template('feature_map.html', session = session )
 
-@app.route("/seq_features", methods=["GET", "POST"])
-def seq_features():
-
-    if 'name' not in session:
-        flash('You are not logged in. Please log in first.', 'error')
-        return redirect(url_for('login'))
-
-    if request.method == "POST":
-        if request.form['submit_button'] == 'log_out':
-            session.clear()
-            return redirect(url_for('login'))
-
-        elif request.form['submit_button'] == 'reset':
-            session['valid_proteins'] = False
-
-        elif request.form['submit_button'] == 'submit_sequences':
-            session['proteins'] = proteins = request.form['proteins']
-            app_functions.seq_alignment(proteins)
-
-    return render_template('seq_features.html', session = session)
-
 @app.after_request # Managing cache in the browser
 def add_header(r):
     """
