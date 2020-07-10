@@ -72,3 +72,24 @@ def make_feature_maps(gene):
         session['valid_gene'] = True
 
     return None
+
+def seq_alignment(x, y):
+    try:
+        protein1 = fasta.FastaFile.read(entrez.fetch_single_file(x) 
+        protein2 = fasta.FastaFile.read(entrez.fetch_single_file(y)
+    except:
+        flash('The entered protein could not found. Please try again.', 'error')
+        return None
+matrix = align.SubstitutionMatrix.std_protein_matrix()
+alignments = align.align_optimal(protein1, protein2, matrix, gap_penalty=(-10, -1), terminal_penalty=False)
+fig = plt.figure(figsize=(8.0, 2.5))
+ax = fig.add_subplot(111)
+graphics.plot_alignment_similarity_based(
+    ax, alignments[0], matrix=matrix, labels=["x", "y"],
+    show_numbers=True, show_line_position=True)
+fig.tight_layout()
+plt.show()
+
+plt.title('This plot is for sequence alignment'.format(i))
+plt.savefig(pwd + '/app/static/images/{}.png'.format(i), dpi=300)
+session['valid_protein'] = True
