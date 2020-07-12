@@ -34,7 +34,7 @@ def login():
         if workflow == 'RLFP':
             session['workflow'] = 'RLFP'
             session['full_workflow'] = 'RLFP analysis'
-            session['valid_gene'] = False
+            session['valid_seq'] = False
             return(redirect(url_for('RLFP')))
         else:
             flash('The workflow is currently not supported', 'error')
