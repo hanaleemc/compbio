@@ -74,7 +74,7 @@ def make_feature_maps(gene):
     return None
 import biotite.sequence as seq
 import matplotlib.pyplot as plt
-def RLFP(gene):
+def RLFP (gene):
     #The cutting sequances. Notice that this is only two restriction enzymes
     #for forward and backward translation 
     gene=''.join(gene.split())#removing the spaces
