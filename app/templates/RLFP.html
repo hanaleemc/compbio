@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="/static/css/app.css">
+	 <link rel="icon" href="/static/images/dna_icon.png">
+   <head>
+      <title>Your Dashboard</title>
+      <script type="text/javascript" src="/static/js/jquery-2.1.4.js"></script>
+   </head>
+   <body>
+      <div class="vertical-nav bg-white" id="sidebar">
+         <div class="py-4 px-3 mb-4 bg-light">
+            <div class="media d-flex align-items-center">
+               <div class="media-body">
+                  <h4 style='text-align:center'> {{ session['name'] }}'s Dashboard </h4>
+                  <br>
+                  <h5 class="m-0" style='text-align:center'> <b> Workflow: </b> {{ session['full_workflow'] }} </h5>
+                  <br>
+                  <form class="white short_form" enctype="multipart/form-data" method="post">
+                     <button type="submit" name='submit_button' class="btn btn-primary padding-up" value='log_out'>Log Out</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="notif-cell white2">
+         <h2> Welcome to your CompBio Dashboard </h2>
+         <h4> Manage your Genomic Workflows with one click </h4>
+         <p style='color:red'>
+            {% with messages = get_flashed_messages(category_filter=["error"]) %}
+            {% if messages %}
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+         </p>
+         <p style='color:green'>
+            {% with messages = get_flashed_messages(category_filter=["success"]) %}
+            {% if messages %}
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br><br>
+         </p>
+         {% if session['valid_seq'] %}
+         <br>
+         <p><b>RLFP analysis using Taqi restriction enzyme </b> </p>
+         <img src="/static/images/RLFP_Taqi_length.png" id ='image'/><br><br>
+         <p><b>RLFP analysis using Taqi restriction enzyme in the reverse direction</b></p>
+         <img src="/static/images/RLFP_TaqI_rev_length.png" id ='image'/><br><br>
+         <p><b>RLFP analysis using HpaII restriction enzyme </b></p>
+         <img src="/static/images/RLFP_HpaII_length.png" id ='image'/><br><br>
+         <p><b>RLFP analysis using HpaII restriction enzyme in the reverse direction</b> </p>
+         <img src="/static/images/HpaII_rev_length.png" id ='image'/><br><br>
+         <form class="white" enctype="multipart/form-data" method="post">
+            <button type="submit" name='submit_button' class="btn btn-primary padding-up" value='reset_RLFP'>Reset RLFP histograms</button>
+         </form>
+         {% else %}
+         <form class='short_form' enctype="multipart/form-data" method="post">
+            <input required name='gene' id="gene" placeholder="Enter the sequance of interest"> <br> <br>
+            <button type="submit" name='submit_button' class="btn btn-primary padding-up" value='submit_gene'> Submit </button>
+         </form>
+         {% endif %}
+      </div>
+      <hr> 
+   </body>
+</html>
