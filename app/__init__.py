@@ -6,6 +6,7 @@ import pandas as pd
 import app_functions
 from flask_session import Session
 from flask_talisman import Talisman
+import os
 
 app = Flask(__name__)
 SESSION_TYPE = 'filesystem'
