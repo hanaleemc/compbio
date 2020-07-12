@@ -30,6 +30,14 @@ def login():
             session['full_workflow'] = 'Feature Map'
             session['valid_gene'] = False
             return(redirect(url_for('feature_map')))
+        
+        if workflow == 'RLFP':
+            session['workflow'] = 'RLFP'
+            session['full_workflow'] = 'RLFP analysis'
+            session['valid_gene'] = False
+            return(redirect(url_for('RLFP')))
+        else:
+            flash('The workflow is currently not supported', 'error')
 
         if workflow == 's_features':
             session['workflow'] = 's_features'
