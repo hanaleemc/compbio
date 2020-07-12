@@ -62,6 +62,33 @@ def feature_map():
 
     return render_template('feature_map.html', session = session )
 
+#for the RLFP
+@app.route("/RLFP", methods=["GET", "POST"])
+def RLFP():
+
+    if 'name' not in session:
+        flash('You are not logged in. Please log in first.', 'error')
+        return redirect(url_for('login'))
+
+    if request.method == "POST":
+        if request.form['submit_button'] == 'log_out':
+            session.clear()
+            return redirect(url_for('login'))
+
+        elif request.form['submit_button'] == 'reset_RLFP':
+            session['valid_seq'] = False
+            pwd = os.getcwd()
+            os.remove(pwd + '/static/images/RLFP_Taqi_length.png')
+            os.remove(pwd + '/static/images/RLFP_TaqI_rev_length.png')
+            os.remove(pwd + '/static/images/RLFP_HpaII_length.png')
+            os.remove(pwd + '/static/images/HpaII_rev_length.png')
+
+        elif request.form['submit_button'] == 'submit_gene':
+            session['gene'] = gene = request.form['gene']
+            app_functions.RLFP(gene)
+
+    return render_template('RLFP.html', session = session )
+
 @app.after_request # Managing cache in the browser
 def add_header(r):
     """
